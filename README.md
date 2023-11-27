@@ -1,7 +1,7 @@
 #WHAN Diagram plots code
 
 
-Based on work by Nora Castillo and Maria Argudo Fernandez. This code presents a new way to understand the WHAN diagram by Cid Fernandez et al 2011. Using the MaNGA data emission of NII and Hα, we make a degraded ionization WHAN map for any galaxy in MaNGA. We define the following color categories:
+Work by Nora Castillo and Maria Argudo Fernandez. This code presents a new way to understand the WHAN diagram by Cid Fernandez et al 2011. Using the MaNGA data emission of NII and Hα, we make a degraded ionization WHAN map for any galaxy in MaNGA. We define the following color categories:
 
 
 [royalblue to lightblue]:
