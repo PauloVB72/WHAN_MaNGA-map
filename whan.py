@@ -1,38 +1,21 @@
-import pandas as pd
-import marvin
-import re
-from marvin.tools import Cube , Image
-from marvin import config
-from astropy.io import ascii
-from marvin.tools.quantities.map import Map
-import numpy as np
-from astropy.table import Table
-import matplotlib.pyplot as plt
-from zmq import EVENT_CLOSE_FAILED
-#from whan import WHAN
-from astropy import coordinates, units as u, wcs
-from astropy.units import cds
-from astropy.units import Quantity as q
-from marvin.tools import Maps 
-import os
-import matplotlib.style as style 
-from numpy import asarray
-from numpy import loadtxt
-from datetime import date
-from numpy import ndarray
-from os import path
-from curses.ascii import isdigit
-import configparser
-from numpy import savetxt,loadtxt
-from matplotlib.pyplot import cm
-from scipy import sparse, interpolate
+import numpy as np, matplotlib.pyplot as plt
+
+from colour import Color
+
 from matplotlib import colors
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+from matplotlib.pyplot import cm
+
+import marvin
+from marvin import config
+from marvin.tools import Cube, Image
+from marvin.tools.quantities.map import Map
+#from marvin.tools import Maps 
 from marvin.tools.maps import Maps
 import marvin.utils.plot.map as mapplot
-from marvin.utils.general.images import showImage
-from numpy import savetxt,loadtxt
-from colour import Color
+
+import warnings
+warnings.filterwarnings('ignore')
 
 
 def color_wcat(col1,col2,num): 
@@ -45,7 +28,7 @@ def color_wcat(col1,col2,num):
 
 class WHAN:
     
-    """MODULE WHAN, this creates a map of ionization for activity nuclear on the spaxel of galaxy"""
+    """MODULE WHAN, this creates a WHAN diagram and map considering the emission of each spaxel in a MaNGA galaxy"""
     
     def __init__(self,plateifu,snr=1,**kwargs):
         
@@ -72,7 +55,7 @@ class WHAN:
         self.nocov = self.ewha.pixmask.get_mask('NOCOV')
         
         
-    def map_plot(self,num = 4):
+    def map_plot(self, num=8, path=None, **kwargs):
         
         plateifus = self.plateifu
 
@@ -125,7 +108,7 @@ class WHAN:
         pg = (self.ewha.value < 0.5) & (self.ewnii.value < 0.5)
         value[pg] = float(4*num +2)
 
-        #aqui se generan los rangos de color para cada categoria
+        #Colour range for each WHAN category
 
         color_1= [str(color_wcat('lightblue','royalblue',num)[i]) for i in range(num)]
         color_2= [str(color_wcat('plum','darkviolet',num)[i]) for i in range(num)]
@@ -137,8 +120,9 @@ class WHAN:
         cb_num = len(color_tot[0])
 
 
-        fig, ax, cb = mapplot.plot(value=value, ivar=self.ivar, mask=self.nocov, cmap=cmap, use_masks='NOCOV', return_cb=True, cbrange=(cb_num,1),
-                                           title='WHAN MAP {}'.format(plateifus))
+        fig, ax, cb = mapplot.plot(value=value, ivar=self.ivar, mask=self.nocov, cmap=cmap, 
+                                   use_masks='NOCOV', return_cb=True, cbrange=(cb_num,1),
+                                   title='WHAN Map {}'.format(plateifus))
 
         cb_tick = np.arange(0,cb_num)
         cb_tickla = []
@@ -165,9 +149,16 @@ class WHAN:
 
         cb.set_ticks(cb_tick)
         cb.set_ticklabels(cb_tickla)
+        
+        if path == None:
+            pass
+        else:
+            plt.savefig(path+'map_'+self.plateifu+'.png', 
+                        bbox_inches='tight', pad_inches=0.2, transparent=True, facecolor='w')
+            
         plt.show()
         
-    def diagram_plot(self,num=4):
+    def diagram_plot(self, num=8, path=None, **kwargs):
         
         niiha_range1 = np.linspace(-0.58,-0.4,num)[::-1]
         niiha_range2 = np.linspace(-0.4,-0.25,num)
@@ -237,4 +228,11 @@ class WHAN:
         plt.xlabel(r'$\rm log~[N_{II}]/H_\alpha$', fontsize=14)
         plt.ylabel(r'$\rm W_{H_\alpha}~[\AA]$', fontsize=14)
         plt.legend()
+
+        if path == None:
+            pass
+        else:
+            plt.savefig(path+'diagram_'+self.plateifu+'.png', 
+                        bbox_inches='tight', pad_inches=0.2, transparent=True, facecolor='w')
+        
         plt.show()
