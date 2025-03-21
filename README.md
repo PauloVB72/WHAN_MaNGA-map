@@ -3,8 +3,8 @@ Spatially resolved WHAN diagnotic diagram for MaNGA galaxies
 
 Python tool for the visualization of the spatially resolved WHAN diagnotic diagram for galaxies in the `MaNGA survey` (<https://www.sdss4.org/surveys/manga/>).
 
-This code contains the visualisation tools developed for the A&A Article `A MaNGA view of isolated galaxy mergers in the star-forming Main Sequence` (<https://ui.adsabs.harvard.edu/abs/2025arXiv250210078V/abstract>) by P. Vasquez-Bustos, M. Argudo-Fernández, M. Boquien, N. Castillo-Baeza, A. Castillo-Rencoret, and D. Ariza-Quintana.
-The code has been developed by Nora Castillo, Paulo Vásquez-Bustos, and Maria Argudo-Fernández, taking advantage of the `Marvin tools` (<https://github.com/sdss/marvin>) for the analysis of MaNGA data. This code aims to help in the understanding and visualisation of the spatially distributed emission in galaxies in 3D, using the WHAN diagnostic diagram by Cid Fernandez et al 2011. Using the MaNGA data emission of NII and Hα, the function created a colour gradient ionization WHAN map for any galaxy in MaNGA, providing the plate-ifu or MaNGA ID of the galaxy. This function is an updated version of the existing example tutorial for the creation of a WHAN map available in the `Marvin documentation` (<https://sdss-marvin.readthedocs.io/en/stable/tutorials/exercises.html>). 
+This code contains the visualisation tools developed for the A&A Article [A MaNGA view of isolated galaxy mergers in the star-forming Main Sequence](https://ui.adsabs.harvard.edu/abs/2025arXiv250210078V/abstract) by P. Vasquez-Bustos, M. Argudo-Fernández, M. Boquien, N. Castillo-Baeza, A. Castillo-Rencoret, and D. Ariza-Quintana.
+The code has been developed by Nora Castillo, Paulo Vásquez-Bustos, and Maria Argudo-Fernández, taking advantage of the [Marvin tools](https://github.com/sdss/marvin) for the analysis of MaNGA data. This code aims to help in the understanding and visualisation of the spatially distributed emission in galaxies in 3D, using the WHAN diagnostic diagram by Cid Fernandez et al 2011. Using the MaNGA data emission of NII and Hα, the function created a colour gradient ionization WHAN map for any galaxy in MaNGA, providing the plate-ifu or MaNGA ID of the galaxy. This function is an updated version of the existing example tutorial for the creation of a WHAN map available in the [Marvin documentation](https://sdss-marvin.readthedocs.io/en/stable/tutorials/exercises.html). 
 
 The WHAN colour scheme
 ----------------------
@@ -35,4 +35,30 @@ We define the following color categories, based on the original definition of th
 
 Theese are the default colour schemes per category, with a number of 8 bin for the colour gradient. The user can choose a different colour scheme, following the available colours in the matplotlib library, and a different number of bins. 
 
+Citing and license
+----------------------
 
+The code is is licensed under the terms of the `MIT` License. 
+
+If you use the tool for work/research presented in a publication, we ask that you cite Vásquez-Bustos et al. 2025. 
+
+Bibtex entry to use:
+
+```
+@ARTICLE{2025arXiv250210078V,
+       author = {{V{\'a}squez-Bustos}, P. and {Argudo-Fern{\'a}ndez}, M. and {Boquien}, M. and {Castillo-Baeza}, N. and {Castillo-Rencoret}, A. and {Ariza-Quintana}, D.},
+        title = "{A MaNGA view of isolated galaxy mergers in the star-forming Main Sequence}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - Astrophysics of Galaxies},
+         year = 2025,
+        month = feb,
+          eid = {arXiv:2502.10078},
+        pages = {arXiv:2502.10078},
+          doi = {10.48550/arXiv.2502.10078},
+archivePrefix = {arXiv},
+       eprint = {2502.10078},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2025arXiv250210078V},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
